@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Личный сайт студента GeekBrains</title>
+		<link rel="stylesheet" href="css/style.css">
+
+		<script type="text/javascript">
+			
+			function game() {
+				
+				function getRandomInt(min, max) {
+					return Math.floor(Math.random()*(max - min + 1) + min);
+				}
+
+				function getCard() {
+					var cards = ['6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+					return cards[getRandomInt(0, cards.length - 1)];
+				}
+
+				function getSum(arr) {
+					var sum_Player = 0;
+					//считаем сумму всех карт, кроме тузов
+					for(var i=0; i<arr.length; i++) {
+						if (arr[i] != 'A') {	
+							if (arr[i] == 'J' || arr[i] == 'Q' || arr[i] == 'K') {
+								sum_Player = sum_Player + 10;
+							} else {
+								sum_Player = sum_Player + parseInt(arr[i]);
+							}
+						}
+					}
+					//туз считается как 1, если текущая сумма больше 10, иначе - как 11
+					for(var i=0; i<arr.length; i++) {
+						if (arr[i] == 'A') {	
+							if (sum_Player > 10) {
+								sum_Player = sum_Player + 1;
+							} else {
+								sum_Player = sum_Player + 11;
+							}
+						}
+					}
+					return sum_Player;
+				}
+
+				function getStatus() {
+					return 'Дилер: ' + dealer.join(' ') + ' (' + getSum(dealer) + ' очк.).' + ' Игрок: ' + player.join(' ') + ' (' + getSum(player) + ' очк.).';
+				}
+
+				var newGame = '';
+				do {
+					var dealer = [getCard()];
+					var player = [getCard(), getCard()];
+
+					if (getSum(player) == 21) {
+						alert('Дьявольское везение! Black Jack на раздаче! $_$ ' + getStatus());
+					} else {	
+						var answer = '';
+						do {
+							answer = prompt(getStatus() + ' Хотите еще карту? 1 - Да, иначе - Нет');
+							//сдаем карту игроку, либо прекращаем игру
+							if (answer == '1') {
+								player.push(getCard());
+								
+								//проверяем, нет ли перебора или выигрыша
+								var sum = getSum(player); 
+								if (sum > 21) {
+									alert('Перебор Т_Т ' + getStatus());
+									break;
+								} else if (sum == 21) {
+									alert('Black Jack! :P ' + getStatus());
+									break;
+								}
+							} else {
+								//игрок закончил брать карты
+								//теперь карты берет дилер
+								while (getSum(dealer) < 17) {
+									dealer.push(getCard());
+								}
+								//проверяем результат
+								var sumDealer = getSum(dealer);
+								var sumPlayer = getSum(player);
+
+								if (sumDealer == 21) {
+									alert('У дилера Black Jack! Вы проиграли.. ' + getStatus());
+								} else if (sumDealer > 21) {
+									alert('У дилера перебор! Вы победили!' + getStatus());
+								} else if (sumPlayer == sumDealer) {
+									alert('Ничья! ' + getStatus());
+								} else if (sumPlayer > sumDealer) {
+									alert('Выигрыш! ' + getStatus());
+								} else {
+									alert('Проигрыш.. :( ' + getStatus());
+								}
+							}
+						} while(answer == '1');
+					}
+					newGame = prompt('Хотите сыграть еще? 1 - Да, иначе - Нет');
+				} while(newGame == '1');
+				alert("Спасибо за игру! Удачи!");
+			}
+
+		</script>
+
+   </head>
+
+    <body>
+		<div id=tooplate_body_wrapper>	
+			<div id=tooplate_wrapper>	
+				<div id=tooplate_header>	
+					<div id=site_title>	
+						<h1><a href="http://geekbrains.ru/" target="_blank">GeekBrains</a></h1>
+					</div>
+					<div id="tooplate_menu">
+						<ul>
+							<li> <a href="index.html">Главная</a></li>
+							<li> <a href="puzzle.html">Загадки</a></li>
+							<li> <a href="guess.html">Угадайка</a></li>
+							<li> <a href="guess_multy.html">Угадайка мультиплеер</a></li>
+							<li> <a href="blackjack.html">Блэк Джек</a></li>
+						</ul>
+					</div>
+				</div>   
+ 					
+			<div id=content_box>
+				<div id=content_title>
+					<h2>Игра Блэк Джек</h2>
+				</div>
+					<div id=content>
+						<h3>Правила игры</h3>
+						<h5>Цель игры</h5>
+						<p>В блэкджек играют против дилера. Поэтому основная цель заключается в том, чтобы собрать комбинацию карт, превосходящую руку дилера, но без перебора. Лучшая рука имеет 21 очко. Любая комбинация, сумма очков которой больше 21 автоматически выбывает из игры.<br>
+						Обратите внимание, не нужно всегда набирать 21очко для того, чтобы выиграть у дилера. Для этого достаточно иметь руку, сумма очков которой, превышает общую сумму очков у дилера.</p>
+						<h5>Значения карт</h5>
+						<p>Все карты с лицами (король, дама и валет) приносят 10 очков. Туз стоит 1 или 11 очков (11 пока общая сумма не больше 21, далее 1). Стоимость остальных карт равна их числовому значению. Например, 3 принесет вам 3 очка, а 6 - 6 очков. Масти карт никакого отношения к их стоимости не имеют.</p>
+						<br>
+						<hr>
+						<br>
+						<input type="button" value="Начать игру!" onclick="game()"/>
+						<br><br>
+						<hr>
+					</div>
+			   		<div id=tooplate_footer> 
+			   			Copyright © 2018 Семенов В.Н.
+			   		</div>
+			   	</div>
+			</div>   
+		</div>   
+    </body>
+</html>	
+

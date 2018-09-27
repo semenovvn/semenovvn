@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Личный сайт студента GeekBrains</title>
+
+		<link rel="stylesheet" href="css/style.css">
+
+<script type="text/javascript">
+
+	function game() {
+		//блок ввода
+		var answer = Math.floor(Math.random() * 100) + 1;
+		var i = 0;
+		var userAnswer = 0;
+		var quit = "q";
+
+		//start While
+		while (true) { 
+		userAnswer = (prompt("Введите число (от 1 до 100)")); //попытка игрока
+			if(userAnswer == quit) {
+				alert("Игра закончена..жаль..Но это Ваш выбор!");
+				break;
+			} else {
+				userAnswer = parseInt(userAnswer);
+				i = i + 1; //счет попыток
+				//проверка на попадание в диапазон 1-100
+				if ((userAnswer >= 1) && (userAnswer <= 100)) {
+					//сравнение с ответом
+					if (userAnswer == answer) {
+						alert ("Вы угадали! Поздравляю!!!");
+						alert ("Количество попыток составило: " + i);
+						break
+						//указание на больше-меньше
+					} else if (answer > userAnswer) {alert ("Не угадали. Ваше число слишком маленькое");}
+							else {alert ("Не угадали. Ваше число больше");}
+				}
+					else {alert ("Введенное значение не подходит. Введите число от 1 до 100");}
+				// end while
+				}
+			}
+		}
+
+</script>
+
+   </head>
+
+    <body>
+		<div id=tooplate_body_wrapper>	
+			<div id=tooplate_wrapper>	
+				<div id=tooplate_header>	
+					<div id=site_title>	
+						<h1><a href="http://geekbrains.ru/" target="_blank">GeekBrains</a></h1>
+					</div>
+					<div id="tooplate_menu">
+						<ul>
+							<li> <a href="index.html">Главная</a></li>
+							<li> <a href="puzzle.html">Загадки</a></li>
+							<li> <a href="guess.html">Угадайка</a></li>
+							<li> <a href="guess_multy.html">Угадайка мультиплеер</a></li>
+							<li> <a href="blackjack.html">Блэк Джек</a></li>
+						</ul>
+					</div>
+				</div>   
+ 					
+			<div id=content_box>
+				<div id=content_title>
+					<h2>Игра Угадайка</h2>
+				</div>
+					<div id=content>
+
+						<h3>Я загадал число от 1 до 100. Попробуй угадать!</h3>
+						<br>
+						<hr><br>
+						<p>Введи число от 1 до 100. Для выхода введи q.</p>
+						<br>
+						<input type="button" value="Начать игру!" onclick="game()"/>
+						<br><br>
+						<hr>
+					</div>
+			   		<div id=tooplate_footer> 
+			   			Copyright © 2018 Семенов В.Н.
+			   		</div>
+			   	</div>
+			</div>   
+		</div>   
+    </body>
+</html>	
+

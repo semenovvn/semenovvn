@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Личный сайт студента GeekBrains</title>
+
+		<link rel="stylesheet" href="css/style.css">
+
+		<script type="text/javascript">
+
+			function checkAnswers() {
+				var answer1 = document.getElementById("puzzle1").value;
+				var goodAnswer = 0;
+				if(answer1.toLowerCase() == "лампа")
+					goodAnswer++;
+
+				var answer2 = document.getElementById("puzzle2").value;
+				if(answer2.toLowerCase() == "колумб")
+					goodAnswer++;
+
+				if (goodAnswer == 0)
+					alert("Вы ничего не угадали.. Сожалею..");
+				else
+					alert("Количество правильных ответов: " + goodAnswer)
+			}
+			
+		</script>
+
+   </head>
+
+    <body>
+		<div id=tooplate_body_wrapper>	
+			<div id=tooplate_wrapper>	
+				<div id=tooplate_header>	
+					<div id=site_title>	
+						<h1><a href="http://geekbrains.ru/" target="_blank">GeekBrains</a></h1>
+					</div>
+					<div id="tooplate_menu">
+						<ul>
+							<li> <a href="index.html">Главная</a></li>
+							<li> <a href="puzzle.html">Загадки</a></li>
+							<li> <a href="guess.html">Угадайка</a></li>
+							<li> <a href="guess_multy.html">Угадайка мультиплеер</a></li>
+							<li> <a href="blackjack.html">Блэк Джек</a></li>
+						</ul>
+					</div>
+				</div>   
+ 					
+			<div id=content_box>
+				<div id=content_title>
+					<h2>Игра в Загадки</h2>
+				</div>
+					<div id=content>
+
+						<h3>Отгадай загадки!</h3>
+						<hr>
+						<br>
+
+						<p>Висит груша, нельзя скушать</p>
+						<input type="text" id="puzzle1">
+
+						<br><br><br>
+
+						<p>Кто открыл Америку?</p>
+						<input type="text" id="puzzle2"/>
+
+						<br><br><br>
+
+						<input type="button" value="Ответить" onclick="checkAnswers()"/>
+
+					</div>
+			   		<div id=tooplate_footer> 
+			   			Copyright © 2018 Семенов В.Н.
+			   		</div>
+			   	</div>
+			</div>   
+		</div>   
+    </body>
+</html>	
+
